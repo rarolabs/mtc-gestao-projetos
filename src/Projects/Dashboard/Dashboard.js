@@ -33,6 +33,21 @@ const Dashboard = () => {
         getData();
     }, []);
 
+    const toggleTarefa = async (index) => {
+        const tarefa = tarefas[index];
+        tarefa.complete = !tarefa.complete;
+        setTarefas([...tarefas]);
+
+        await axiosInstance.put(`/tarefas/${tarefa.id}`, tarefa);
+    };
+
+    const deleteTodo = async (tarefa, index) => {
+        tarefas.splice(index, 1);
+        setTarefas([...tarefas]);
+
+        await axiosInstance.delete(`/tarefas/${tarefa.id}`);
+    }
+
     return (
         <Row>
             <Col md={8}>
@@ -93,10 +108,8 @@ const Dashboard = () => {
                     <Card.Body>
                         <ListaTodos
                             todos={tarefas.slice(0, 10)}
-                            onComplete={index => {
-                                tarefas[index].complete = !tarefas[index].complete;
-                                setTarefas([...tarefas]);
-                            }}
+                            onComplete={toggleTarefa}
+                            onDeleteTodo={ deleteTodo }
                         />
                     </Card.Body>
                 </Card>
