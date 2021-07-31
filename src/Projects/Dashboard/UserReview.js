@@ -5,7 +5,7 @@ import { EMPTY_LINK, formatDate } from './utils';
 const UserReview = ({ review }) => (
     <div className="row">
         <div className="col">
-            <h6 className="m-b-15">Allina D’croze <span className="float-right f-13 text-muted">{ formatDate(review.data) }</span></h6>
+            <h6 className="m-b-15">{ review.nome } <span className="float-right f-13 text-muted">{ formatDate(review.data) }</span></h6>
             <StarRating rating={ review.avaliacao } />
             <p className="m-t-15 m-b-15 text-muted">{ review.comentario }</p>
             <a href={ EMPTY_LINK } className="m-r-30 text-muted">
